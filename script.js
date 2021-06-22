@@ -1,3 +1,5 @@
+import { debounce } from "./utils/debounce"
+
 //формирование запроса
 async function getData (url, query, search) {
   const response = await fetch(`${url}${query}${search}`)
@@ -5,14 +7,7 @@ async function getData (url, query, search) {
 }
 
 // вынести
-const debounce = (appendData, debounceTime = 500) => {
-  let timeOut
-  return function () {
-    const func = () => { appendData.apply(this, arguments) }
-    clearTimeout(timeOut)
-    timeOut = setTimeout(func, debounceTime)
-  }
-}
+
 
 // фабрика по производству объекта репозитория
 class Repository {
