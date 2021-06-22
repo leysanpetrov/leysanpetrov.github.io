@@ -1,0 +1,102 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    background-color: darkgray;
+    width: 600px;
+    height: 900px;
+}
+
+.block-entry {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: white;
+    width: 400px;
+    height: 50px;
+    margin: 50px auto;
+}
+
+.block-repo {
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    margin: 50px auto;
+}
+
+.repo {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: orchid;
+    width: 400px;
+    height: 70px;
+    list-style-type: none;
+    border: 1px solid #000;
+    padding-left: 10px;
+
+}
+
+.close-btn {
+    position: absolute;
+    cursor: pointer;
+    right: 32px;
+    top: 20px;
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+}
+
+.close-btn:hover {
+    opacity: 0.5;
+}
+
+.close-btn:before, .close-btn:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: red;
+}
+
+.close-btn:before {
+    transform: rotate(45deg);
+}
+
+.close-btn:after {
+    transform: rotate(-45deg);
+}
+
+input {
+    height: 50px;
+    width: 100%;
+    padding-left: 10px;
+    border: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+input:focus {
+    outline: 0;
+}
+
+
+.variation {
+    background-color: lightgray;
+    width: 390px;
+    height: 50px;
+    border: 1px solid #000;
+    font-size: 25px;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+.variation:hover {
+    background-color: darkturquoise;
+}
+
+.variations {
+    width: 400px;
+}
