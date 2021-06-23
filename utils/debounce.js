@@ -6,4 +6,3 @@ export const debounce = (appendData, debounceTime = 500) => {
     timeOut = setTimeout(func, debounceTime)
   }
 }
-

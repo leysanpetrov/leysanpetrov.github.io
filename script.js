@@ -1,28 +1,10 @@
-import { debounce } from "./utils/debounce"
-
-//формирование запроса
-async function getData (url, query, search) {
-  const response = await fetch(`${url}${query}${search}`)
-  return await response.json()
-}
-
-// вынести
-
-
-// фабрика по производству объекта репозитория
-class Repository {
-  constructor (item) {
-    this.id = item.id
-    this.name = item.name
-    this.owner = item.owner.login
-    this.stars = item.stargazers_count
-  }
-}
+import { debounce } from './utils/debounce.js'
+import { getData } from './API/api.js'
+import { Repository } from './domain/Repository.js'
 
 const entryField = document.querySelector('input')
 entryField.addEventListener('input', debounce(appendData))
 
-//отправляем запрос
 async function appendData (event) {
   let repositories = await getData(`https://api.github.com/search/repositories`, '?q=topic:', event.target.value)
     .then((data) => {
@@ -32,9 +14,7 @@ async function appendData (event) {
   generateVariations(repositories)
 }
 
-// список из поборки репо
 function generateVariations (repositories) {
-
   const variationsParent = document.querySelector('.variations')
   variationsParent.innerHTML = ''
 
@@ -52,17 +32,11 @@ function generateVariations (repositories) {
   }
 }
 
-// формируем репо для списка
-function getRepoById (id, repositories) {
-  const foundedRepo = repositories.find(repo => repo.id === Number(id))
-  return new Repository(foundedRepo)
-}
-
-//отриосвываем элемент в список репо
 let reposIds = []
+
 function addRepo (repositories) {
   const blockRepo = document.querySelector('.block-repo')
-  const constructedRepo = getRepoById(this.id, repositories)
+  const constructedRepo = Repository.getRepoById(this.id, repositories)
 
   blockRepo.childNodes.forEach((node) => {
     const nodeId = Number(node.getAttribute('data-id'))
@@ -84,7 +58,6 @@ function addRepo (repositories) {
   addDeleteEventOnCloseButton()
 }
 
-//навешивание событий на кнопку удалить
 const addDeleteEventOnCloseButton = () => {
   let closeBtns = document.querySelectorAll('.close-btn')
 
@@ -97,8 +70,3 @@ const addDeleteEventOnCloseButton = () => {
     })
   }
 }
-
-
-
-
-
